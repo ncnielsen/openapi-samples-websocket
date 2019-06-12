@@ -372,8 +372,8 @@ namespace Streaming.WebSocket.Samples
 			{
 				case "_heartbeat":
 					// HeartBeat messages indicate that no new data is available. You do not need to do anything.
-					var heartBeatMessage = DecodeWebSocketMessagePayload<HeartbeatControlMessage>(webSocketMessage);
-					var referenceIdList = String.Join(",", heartBeatMessage.Heartbeats.Select(h => h.OriginatingReferenceId));
+					var heartBeatMessage = DecodeWebSocketMessagePayload<HeartbeatControlMessage[]>(webSocketMessage);
+					var referenceIdList = String.Join(",", heartBeatMessage.First().Heartbeats.Select(h => h.OriginatingReferenceId));
 					Console.WriteLine($"{webSocketMessage.MessageId}\tHeartBeat control message received for reference ids {referenceIdList}.");
 					break;
 				case "_resetsubscriptions":
